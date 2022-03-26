@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    invices 
+                    LARAVEL
                 </div>
 
                 <div class="links">

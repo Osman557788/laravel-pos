@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/dashboard';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -82,7 +82,8 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapDashboardRoutes()
     {
-        Route::prefix('dashboard')
+        Route::middleware('web')
+            ->prefix('dashboard')
             ->name('dashboard.')
             ->namespace('App\Http\Controllers\Dashboard')
             ->group(base_path('routes/dashboard.php'));

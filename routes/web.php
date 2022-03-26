@@ -17,37 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/form', function () {
-    return view('dashboard.form');
-});
-
-
-Route::get('/axios', function () {
-    return 'welcome';
-});
-
-Route::post('/submit', function (Request $request) {
-    $data=$request->except('password');
-
-    $extension=$request->file('file')->getClientOriginalExtension();
-    
-    $request->file('file')->move(storage_path(),time().'.'.$extension);
-    
-    $data['photo']=$request->file('file')->getClientOriginalExtension();
-    
-    $data['password']=bcrypt($request->password);
-    
-    return App\User::create($data);
-
-})->name('form');
-
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/auth', function(){
-
-
-
-
-});

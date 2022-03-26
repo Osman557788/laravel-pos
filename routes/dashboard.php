@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['web']],function(){
-
+Route::group(['middleware'=>['auth']],function(){
     //welcom
     Route::get('/', 'WelcomeController@index')->name('welcome');
     
@@ -20,12 +19,10 @@ Route::group(['middleware' => ['web']],function(){
     Route::resource('product', 'ProductController'); 
 
     //client order 
-    Route::resource('clients.orders', 'Client\OrderController')->except(['show']);
+    Route::resource('clients.orders', 'Client\OrderController');
     Route::get('products', 'Client\OrderController@getProductsWithCategories');
     // order
     Route::resource('orders', 'OrderController');
     Route::get('order/{order}', 'OrderController@getProductOfOrder');
-    // Route::resource('orders', 'OrderController')->except(['create','update','store','edit']);
-   
 
 });
